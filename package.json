@@ -8,7 +8,6 @@
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
-    "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm run start-message",
     "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\"",

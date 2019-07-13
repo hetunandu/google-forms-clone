@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import fuelSavings from './fuelSavingsReducer';
+import form from './formReducer';
 import { connectRouter } from 'connected-react-router'
 
 const rootReducer = history => combineReducers({
   router: connectRouter(history),
-  fuelSavings,
+  form,
 });
 
 export default rootReducer;
