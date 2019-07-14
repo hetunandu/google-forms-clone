@@ -1,3 +1,10 @@
+import _ from 'lodash';
 export default {
-  form: []
+  form: [
+    {
+      id: _.uniqueId(),
+      type: 'Text',
+      value: 'Form builder',
+    }
+  ]
 };
