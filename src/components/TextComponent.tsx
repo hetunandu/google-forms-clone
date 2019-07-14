@@ -4,7 +4,14 @@ import TextField from '@material-ui/core/TextField';
 
 import updateComponentValue from '../actions/form/updateValue';
 
-class TextComponent extends Component {
+interface Props {
+  id: string;
+  value: string;
+  type: string;
+  updateValue: (id:string, update: string) => void;
+}
+
+class TextComponent extends Component<Props> {
   constructor(props) {
     super(props);
     this.handleValueChange = this.handleValueChange.bind(this);

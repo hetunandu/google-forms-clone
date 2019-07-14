@@ -1,8 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 import { Route, Switch } from "react-router-dom";
 
-import Form from './Form';
-import PropTypes from "prop-types";
+import Form from './Form.tsx';
 import React from "react";
 import { hot } from "react-hot-loader";
 
@@ -21,9 +20,5 @@ class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  children: PropTypes.element
-};
 
 export default hot(module)(App);

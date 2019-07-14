@@ -6,12 +6,20 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 
-import addFormComponent from '../actions/form/add';
 import FormComponent from './FormComponent';
+import addFormComponent from '../actions/form/add';
+
 import '../styles/styles.scss'
 
+interface Props {
+  addComponent: (payload: { id: string, type: string, value: string }) => void;
+  form: Array<{
+    id: string,
+    type: string,
+  }>
+}
 
-class Form extends Component {
+class Form extends Component<Props> {
   constructor(props) {
     super(props);
     this.handleAddComponentClick = this.handleAddComponentClick.bind(this);
