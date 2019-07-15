@@ -1,5 +1,4 @@
 .edit-component-container {
-  background-color: #9BBDF9;
   padding: 15px;
   display: flex;
   flex-direction: row;
@@ -27,4 +26,11 @@
       }
     }
   }
+}
+
+.view-form-component {
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
 }

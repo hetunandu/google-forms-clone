@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
+import Paper from "@material-ui/core/Paper";
+import '../../styles/components.scss';
 
 interface Props {
   settings: {
@@ -14,16 +16,18 @@ class TextInputView extends Component<Props> {
   render() {
     const { settings: { question, maxChars } } = this.props;
     return (
-      <FormControl>
-        <p>{question}</p>
-        <TextField
-          InputLabelProps={{ shrink: true }}
-          label="Answer"
-          inputProps={{
-            maxLength: maxChars,
-          }}
-        />
-      </FormControl>
+      <Paper className="view-form-component">
+        <FormControl>
+          <p>{question}</p>
+          <TextField
+            InputLabelProps={{ shrink: true }}
+            label="Answer"
+            inputProps={{
+              maxLength: maxChars,
+            }}
+          />
+        </FormControl>
+      </Paper>
     );
   }
 }

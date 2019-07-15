@@ -8,7 +8,7 @@ export default {
       type: STATIC_TEXT_COMPONENT,
       settings: {
         value: 'Form title',
-        fontSize: 10,
+        fontSize: 30,
       },
     }
   ]

@@ -60,10 +60,10 @@ class TextEdit extends Component<Props> {
               onChange={this.handleFontSizeChange}
               inputProps={{ name: 'fontSize' }}
             >
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={13}>13</MenuItem>
-              <MenuItem value={16}>16</MenuItem>
+              <MenuItem value={15}>15</MenuItem>
               <MenuItem value={20}>20</MenuItem>
+              <MenuItem value={25}>25</MenuItem>
+              <MenuItem value={30}>30</MenuItem>
             </Select>
           </FormControl>
         </div>
