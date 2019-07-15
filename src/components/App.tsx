@@ -1,7 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 import { Route, Switch } from "react-router-dom";
 
-import Form from './Form.tsx';
+import Form from './Form';
 import React from "react";
 import { hot } from "react-hot-loader";
 
