@@ -27,9 +27,9 @@ class TextInputComponent extends Component<Props> {
     const newValue = e.target.value;
     updateComponent(id, { question: newValue });
   }
-  handleMaxCharsChange(e: React.ChangeEvent<{ value: number }>) {
+  handleMaxCharsChange(e: React.ChangeEvent<{ value: string }>) {
     const { id, updateComponent } = this.props;
-    const newValue = e.target.value;
+    const newValue = parseInt(e.target.value, 10);
     updateComponent(id, { maxChars: newValue });
   }
   render() {
@@ -50,7 +50,7 @@ class TextInputComponent extends Component<Props> {
             label="Max Characters"
             placeholder="Max"
             value={maxChars}
-            onChange={this.handleValueChange}
+            onChange={this.handleMaxCharsChange}
             margin="normal"
           />
         </FormControl>

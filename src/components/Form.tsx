@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import uuid from 'uuid/v4';
 import { connect } from 'react-redux';
 import AddIcon from '@material-ui/icons/Add';
+import DownloadIcon from '@material-ui/icons/TrendingDown';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Dialog from "@material-ui/core/Dialog";
@@ -30,11 +31,15 @@ interface State {
 }
 
 class Form extends Component<Props, State> {
+  controls: {
+    downloadAnchor?: HTMLAnchorElement | null;
+  } = {};
   constructor(props) {
     super(props);
     this.handleAddComponentClick = this.handleAddComponentClick.bind(this);
     this.handleSelectionModalClose = this.handleSelectionModalClose.bind(this);
     this.handleSelectComponentType = this.handleSelectComponentType.bind(this);
+    this.handleDownloadFormClick = this.handleDownloadFormClick.bind(this);
     this.state = {
       showSelectionModal: false,
     }
@@ -48,6 +53,16 @@ class Form extends Component<Props, State> {
     this.setState({
       showSelectionModal: true,
     })
+  }
+  handleDownloadFormClick() {
+    const { form } = this.props;
+    const { downloadAnchor } = this.controls;
+    const jsonStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(form));
+    if(downloadAnchor) {
+      downloadAnchor.setAttribute("href", jsonStr);
+      downloadAnchor.setAttribute("download", "formConfig.json");
+      downloadAnchor.click();
+    }
   }
   handleSelectComponentType(componentSettings: { type: string, defaultSettings: Object }) {
     const { type, defaultSettings } = componentSettings;
@@ -84,6 +99,15 @@ class Form extends Component<Props, State> {
             <AddIcon />
             Add Component
           </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.handleDownloadFormClick}
+          >
+            <DownloadIcon />
+            Download Config
+          </Button>
+          <a ref={ref => this.controls.downloadAnchor = ref} />
         </Paper>
       </Container>
     )
