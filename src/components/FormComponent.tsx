@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import TextComponent from './TextComponent';
-import TextInputComponent from './TextInputComponent';
-import RadioInputComponent from './RadioInputComponent';
-import DropdownInputComponent from './DropdownInputComponent';
+import TextEdit from './editFormComponents/TextEdit';
+import TextInputEdit from './editFormComponents/TextInputEdit';
+import RadioInputEdit from './editFormComponents/RadioInputEdit';
+import DropdownInputEdit from './editFormComponents/DropdownInputEdit';
+import TextView from './viewFormComponents/TextView';
+import TextInputView from './viewFormComponents/TextInputView';
+import RadioInputView from './viewFormComponents/RadioInputView';
+import DropdownInputView from './viewFormComponents/DropdownInputView';
 
 import {
   STATIC_TEXT_COMPONENT,
@@ -11,23 +15,43 @@ import {
   DROPDOWN_INPUT_COMPONENT,
 } from '../constants/componentTypes';
 
+import * as formTypes from '../types/form';
+
 interface Props {
-  type: string,
+  component: formTypes.FormConfig<formTypes.TextSettings>,
+  mode: 'EDIT' | 'VIEW',
 }
 
 class FormComponent extends Component<Props> {
   render() {
-    const { type } = this.props;
-    switch (type) {
-      case STATIC_TEXT_COMPONENT:
-        return <TextComponent {...this.props} />;
-      case TEXT_INPUT_COMPONENT:
-        return <TextInputComponent {...this.props} />;
-      case RADIO_INPUT_COMPONENT:
-        return <RadioInputComponent {...this.props} />;
-      case DROPDOWN_INPUT_COMPONENT:
-        return <DropdownInputComponent {...this.props} />;
+    const { component, mode } = this.props;
+    const { type } = component;
+    switch (mode) {
+      case "EDIT":
+        switch (type) {
+          case STATIC_TEXT_COMPONENT:
+            return <TextEdit {...component} />;
+          case TEXT_INPUT_COMPONENT:
+            return <TextInputEdit {...component} />;
+          case RADIO_INPUT_COMPONENT:
+            return <RadioInputEdit {...component} />;
+          case DROPDOWN_INPUT_COMPONENT:
+            return <DropdownInputEdit {...component} />;
+        }
+        break;
+      case "VIEW":
+        switch (type) {
+          case STATIC_TEXT_COMPONENT:
+            return <TextView {...component} />;
+          case TEXT_INPUT_COMPONENT:
+            return <TextInputView {...component} />;
+          case RADIO_INPUT_COMPONENT:
+            return <RadioInputView {...component} />;
+          case DROPDOWN_INPUT_COMPONENT:
+            return <DropdownInputView {...component} />;
+        }
     }
+
   }
 }
 

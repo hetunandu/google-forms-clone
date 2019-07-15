@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid/v4';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import AddIcon from '@material-ui/icons/Add';
 import DownloadIcon from '@material-ui/icons/TrendingDown';
 import Button from '@material-ui/core/Button';
@@ -17,20 +18,21 @@ import FormComponent from './FormComponent';
 import { addComponent } from '../actions/form';
 
 import '../styles/styles.scss'
+import {FormConfig} from "../types/form";
 
 interface Props {
-  addComponent: (payload: { id: string, type: string, settings: Object }) => void;
-  form: Array<{
-    id: string,
-    type: string,
-  }>
+  addComponent: (payload: FormConfig<any>) => void;
+  form: Array<FormConfig<any>>;
+  history: {
+    push: (path: string) => void;
+  }
 }
 
 interface State {
   showSelectionModal: boolean;
 }
 
-class Form extends Component<Props, State> {
+class FormBuilder extends Component<Props, State> {
   controls: {
     downloadAnchor?: HTMLAnchorElement | null;
   } = {};
@@ -74,7 +76,7 @@ class Form extends Component<Props, State> {
     })
   }
   render() {
-    const { form } = this.props;
+    const { form, history } = this.props;
     const { showSelectionModal } = this.state;
     return (
       <Container fixed>
@@ -90,7 +92,7 @@ class Form extends Component<Props, State> {
         </Dialog>
         <Paper className="form-container">
           <h2>Form builder</h2>
-          {form.map(c => <FormComponent {...c} key={c.id} />)}
+          {form.map(c => <FormComponent mode="EDIT" component={c} key={c.id} />)}
           <Button
             variant="contained"
             color="secondary"
@@ -108,15 +110,16 @@ class Form extends Component<Props, State> {
             Download Config
           </Button>
           <a ref={ref => this.controls.downloadAnchor = ref} />
+          <Button onClick={() => history.push('view')}>View form</Button>
         </Paper>
       </Container>
     )
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({
     form: state.form
   }),
   { addComponent }
-)(Form);
+)(FormBuilder));

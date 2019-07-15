@@ -6,8 +6,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 
-import { updateComponent } from '../actions/form';
-import '../styles/components.scss';
+import { updateComponent } from '../../actions/form';
+import '../../styles/components.scss';
 
 interface Props {
   id: string;
@@ -19,7 +19,7 @@ interface Props {
   updateComponent: (id:string, update: { value?: string, fontSize?: number }) => void;
 }
 
-class TextComponent extends Component<Props> {
+class TextEdit extends Component<Props> {
   constructor(props) {
     super(props);
     this.handleValueChange = this.handleValueChange.bind(this);
@@ -69,4 +69,4 @@ class TextComponent extends Component<Props> {
 export default connect(
   null,
   { updateComponent }
-)(TextComponent);
+)(TextEdit);

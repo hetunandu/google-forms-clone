@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 
-import OptionsComponent from './OptionsComponent';
-import { updateComponent } from '../actions/form';
-import '../styles/components.scss';
+import OptionsComponent from "./OptionsEdit";
+import { updateComponent } from '../../actions/form';
+import '../../styles/components.scss';
 
 interface Props {
   id: string;
@@ -17,12 +16,12 @@ interface Props {
   updateComponent: (id:string, update: { question?: string }) => void;
 }
 
-class DropdownInputComponent extends Component<Props> {
+class RadioInputEdit extends Component<Props> {
   constructor(props) {
     super(props);
-    this.handleQuestionChange = this.handleQuestionChange.bind(this);
+    this.handleValueChange = this.handleValueChange.bind(this);
   }
-  handleQuestionChange(e: React.ChangeEvent<{ value: string }>) {
+  handleValueChange(e: React.ChangeEvent<{ value: string }>) {
     const { id, updateComponent } = this.props;
     const newValue = e.target.value;
     updateComponent(id, { question: newValue });
@@ -36,7 +35,7 @@ class DropdownInputComponent extends Component<Props> {
             label="Question"
             placeholder="Question"
             value={question}
-            onChange={this.handleQuestionChange}
+            onChange={this.handleValueChange}
             margin="normal"
           />
         </FormControl>
@@ -49,4 +48,4 @@ class DropdownInputComponent extends Component<Props> {
 export default connect(
   null,
   { updateComponent }
-)(DropdownInputComponent);
+)(RadioInputEdit);

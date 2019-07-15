@@ -10,7 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
-import {updateComponent} from "../actions/form";
+import {updateComponent} from "../../actions/form";
 
 
 interface Props {
@@ -26,7 +26,7 @@ interface State {
   optionText: string,
 }
 
-class OptionsComponent extends Component<Props, State> {
+class OptionsEdit extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.handleOptionChange = this.handleOptionChange.bind(this);
@@ -104,4 +104,4 @@ class OptionsComponent extends Component<Props, State> {
 export default connect(
   null,
   { updateComponent }
-)(OptionsComponent);
+)(OptionsEdit);

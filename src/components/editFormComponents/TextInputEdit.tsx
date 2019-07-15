@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 
-import { updateComponent } from '../actions/form';
-import '../styles/components.scss';
+import { updateComponent } from '../../actions/form';
+import '../../styles/components.scss';
 
 interface Props {
   id: string;
@@ -16,7 +16,7 @@ interface Props {
   updateComponent: (id:string, update: { question?: string, maxChars?: number; }) => void;
 }
 
-class TextInputComponent extends Component<Props> {
+class TextInputEdit extends Component<Props> {
   constructor(props) {
     super(props);
     this.handleValueChange = this.handleValueChange.bind(this);
@@ -62,4 +62,4 @@ class TextInputComponent extends Component<Props> {
 export default connect(
   null,
   { updateComponent }
-)(TextInputComponent);
+)(TextInputEdit);
