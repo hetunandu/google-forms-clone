@@ -1,15 +1,29 @@
 html, body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  //min-height: 100%;
+  height: 100%;
 }
 #app {
   min-height: 100%;
-  background-color: beige;
+  background-color: #CAE5FF;
   padding: 20px;
 }
 .form-container {
+  background-color: #9BBDF9 !important;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  .form-title {
+    font-size: 25px;
+    text-align: center;
+  }
+}
+.form-actions {
+  display: flex;
+  margin: 10px 0;
+  padding: 5px;
+  justify-content: space-around;
+  .button {
+    display: flex;
+  }
 }

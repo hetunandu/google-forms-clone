@@ -3,7 +3,8 @@ import uuid from 'uuid/v4';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import AddIcon from '@material-ui/icons/Add';
-import DownloadIcon from '@material-ui/icons/TrendingDown';
+import DownloadIcon from '@material-ui/icons/VerticalAlignBottom';
+import ViewIcon from '@material-ui/icons/RemoveRedEye'
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Dialog from "@material-ui/core/Dialog";
@@ -79,7 +80,41 @@ class FormBuilder extends Component<Props, State> {
     const { form, history } = this.props;
     const { showSelectionModal } = this.state;
     return (
-      <Container fixed>
+      <Container maxWidth="md">
+        <Paper className="form-container">
+          <h2 className="form-title">Form builder</h2>
+          {form.map(c => <FormComponent mode="EDIT" component={c} key={c.id} />)}
+        </Paper>
+        <div className="form-actions">
+          <Button
+            className="button"
+            variant="contained"
+            color="secondary"
+            onClick={this.handleAddComponentClick}
+          >
+            <AddIcon />
+            Add Component
+          </Button>
+          <Button
+            className="button"
+            variant="contained"
+            color="primary"
+            onClick={this.handleDownloadFormClick}
+          >
+            <DownloadIcon />
+            Download Config
+          </Button>
+          <a ref={ref => this.controls.downloadAnchor = ref} />
+          <Button
+            className="button"
+            variant="contained"
+            color="primary"
+            onClick={() => history.push('view')}
+          >
+            <ViewIcon />
+            View form
+          </Button>
+        </div>
         <Dialog open={showSelectionModal} onClose={this.handleSelectionModalClose} >
           <DialogTitle id="simple-dialog-title">Select Component type</DialogTitle>
           <List>
@@ -90,28 +125,6 @@ class FormBuilder extends Component<Props, State> {
             ))}
           </List>
         </Dialog>
-        <Paper className="form-container">
-          <h2>Form builder</h2>
-          {form.map(c => <FormComponent mode="EDIT" component={c} key={c.id} />)}
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.handleAddComponentClick}
-          >
-            <AddIcon />
-            Add Component
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.handleDownloadFormClick}
-          >
-            <DownloadIcon />
-            Download Config
-          </Button>
-          <a ref={ref => this.controls.downloadAnchor = ref} />
-          <Button onClick={() => history.push('view')}>View form</Button>
-        </Paper>
       </Container>
     )
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
 
 import { updateComponent } from '../../actions/form';
 import '../../styles/components.scss';
@@ -35,26 +36,31 @@ class TextInputEdit extends Component<Props> {
   render() {
     const { settings: { question, maxChars } } = this.props;
     return (
-      <div className="text-component-container">
-        <FormControl className="value-field">
-          <TextField
-            label="Question"
-            placeholder="Question"
-            value={question}
-            onChange={this.handleValueChange}
-            margin="normal"
-          />
-        </FormControl>
-        <FormControl className="value-field">
-          <TextField
-            label="Max Characters"
-            placeholder="Max"
-            value={maxChars}
-            onChange={this.handleMaxCharsChange}
-            margin="normal"
-          />
-        </FormControl>
-      </div>
+      <Paper className="edit-component-container">
+        <div className="component-type">
+          Text
+        </div>
+        <div className="settings">
+          <FormControl className="value-field">
+            <TextField
+              label="Question"
+              placeholder="Question"
+              value={question}
+              onChange={this.handleValueChange}
+              margin="normal"
+            />
+          </FormControl>
+          <FormControl className="value-field">
+            <TextField
+              label="Max Characters"
+              placeholder="Max"
+              value={maxChars}
+              onChange={this.handleMaxCharsChange}
+              margin="normal"
+            />
+          </FormControl>
+        </div>
+      </Paper>
     )
   }
 }

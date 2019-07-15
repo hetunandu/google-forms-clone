@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
 
 import { updateComponent } from '../../actions/form';
 import '../../styles/components.scss';
@@ -38,30 +39,35 @@ class TextEdit extends Component<Props> {
   render() {
     const { settings: { value, fontSize } } = this.props;
     return (
-      <div className="text-component-container">
-        <FormControl className="value-field">
-          <TextField
-            label="Text"
-            placeholder="Text you want to display"
-            value={value}
-            onChange={this.handleValueChange}
-            margin="normal"
-          />
-        </FormControl>
-        <FormControl>
-          <InputLabel>Font Size</InputLabel>
-          <Select
-            value={fontSize}
-            onChange={this.handleFontSizeChange}
-            inputProps={{ name: 'fontSize' }}
-          >
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={13}>13</MenuItem>
-            <MenuItem value={16}>16</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
+      <Paper className="edit-component-container">
+        <div className="component-type">
+          Static
+        </div>
+        <div className="settings">
+          <FormControl className="value-field">
+            <TextField
+              label="Text"
+              placeholder="Text you want to display"
+              value={value}
+              onChange={this.handleValueChange}
+              margin="normal"
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel>Font Size</InputLabel>
+            <Select
+              value={fontSize}
+              onChange={this.handleFontSizeChange}
+              inputProps={{ name: 'fontSize' }}
+            >
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={13}>13</MenuItem>
+              <MenuItem value={16}>16</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+      </Paper>
     )
   }
 }

@@ -11,6 +11,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import {updateComponent} from "../../actions/form";
+import '../../styles/components.scss';
 
 
 interface Props {
@@ -68,10 +69,11 @@ class OptionsEdit extends Component<Props, State> {
     const { showOptionFormDialog, optionText } = this.state;
     const { settings: { options } } = this.props;
     return (
-      <React.Fragment>
+      <div className="options-container">
+        <span>Options ({options.length})</span>
         <List>
           {options.map(o => (
-            <ListItem key={o}>
+            <ListItem key={o} className="option">
               <ListItemText>{o}</ListItemText>
             </ListItem>
           ))}
@@ -96,7 +98,7 @@ class OptionsEdit extends Component<Props, State> {
             </Button>
           </DialogActions>
         </Dialog>
-      </React.Fragment>
+      </div>
     );
   }
 }
